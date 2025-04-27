@@ -1,0 +1,340 @@
+/* Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: linear-gradient(-45deg, #ff6b88, #ff8e53, #23a6d5, #23d5ab);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+    height: 100vh;
+    font-family: 'Poppins', sans-serif;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Login Container */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    position: relative;
+}
+
+/* Floating Elements */
+.floating-hearts, .floating-stars, .floating-balloons {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+/* Hearts */
+.heart {
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23ff6b88"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>') no-repeat center center;
+    background-size: contain;
+    animation: float-up 6s linear forwards;
+}
+
+/* Stars */
+.star {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23FFD700"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>') no-repeat center center;
+    background-size: contain;
+    animation: float-up 7s linear forwards;
+}
+
+/* Balloons */
+.balloon {
+    position: absolute;
+    width: 60px;
+    height: 80px;
+    border-radius: 50%;
+    animation: float-up 8s ease-in-out infinite;
+}
+
+.balloon::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 50px;
+    background: rgba(255,255,255,0.5);
+}
+
+.balloon-1 { background: radial-gradient(circle at 30% 30%, #ff6b88, #ff4757); }
+.balloon-2 { background: radial-gradient(circle at 30% 30%, #ffb347, #ff8e53); }
+.balloon-3 { background: radial-gradient(circle at 30% 30%, #4cc9f0, #23a6d5); }
+
+@keyframes float-up {
+    0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
+}
+
+/* Confetti */
+.confetti {
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    opacity: 0;
+    animation: confetti 5s linear infinite;
+}
+
+.confetti:nth-child(1) { background: #ff6b88; left: 10%; animation-delay: 0s; }
+.confetti:nth-child(2) { background: #ffb347; left: 20%; animation-delay: 1s; }
+.confetti:nth-child(3) { background: #4cc9f0; left: 30%; animation-delay: 0.5s; }
+.confetti:nth-child(4) { background: #7b2cbf; left: 40%; animation-delay: 1.5s; }
+.confetti:nth-child(5) { background: #4ad295; left: 50%; animation-delay: 2s; }
+
+@keyframes confetti {
+    0% { opacity: 1; transform: translateY(0) rotate(0deg); }
+    100% { opacity: 1; transform: translateY(100vh) rotate(720deg); }
+}
+
+/* Login Box */
+.login-box {
+    background: rgba(255, 255, 255, 0.85);
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    text-align: center;
+    width: 90%;
+    max-width: 450px;
+    position: relative;
+    z-index: 10;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    animation: popIn 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes popIn {
+    0% { transform: scale(0.5); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+/* Birthday Candle */
+.birthday-candle {
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 30px;
+    height: 50px;
+    background: linear-gradient(to bottom, #ff8e53, #ff6b88);
+    border-radius: 5px 5px 0 0;
+}
+
+.birthday-candle::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 15px;
+    height: 20px;
+    background: #ffd700;
+    border-radius: 50% 50% 20% 20%;
+    box-shadow: 0 0 20px #ff8e53;
+    animation: flicker 2s ease-in-out infinite alternate;
+}
+
+@keyframes flicker {
+    0%, 100% { opacity: 1; transform: translateX(-50%) scale(1); }
+    50% { opacity: 0.8; transform: translateX(-50%) scale(0.95); }
+}
+
+/* Title Animation */
+.birthday-title {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: #ff4757;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.title-word {
+    display: inline-block;
+    position: relative;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.title-word-1 {
+    animation: titleAnimation 0.8s 0.1s forwards;
+    color: #ff6b88;
+}
+
+.title-word-2 {
+    animation: titleAnimation 0.8s 0.3s forwards;
+    color: #ff8e53;
+}
+
+.title-word-3 {
+    animation: titleAnimation 0.8s 0.5s forwards;
+    color: #7b2cbf;
+}
+
+@keyframes titleAnimation {
+    0% { opacity: 0; transform: translateY(20px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+.birthday-subtitle {
+    margin-bottom: 25px;
+    color: #666;
+    font-weight: 300;
+    animation: fadeIn 1s 0.8s forwards;
+    opacity: 0;
+}
+
+@keyframes fadeIn {
+    to { opacity: 1; }
+}
+
+/* Password Input with Animated Characters */
+.input-group {
+    display: flex;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+#password {
+    flex: 1;
+    padding: 18px;
+    border: none;
+    border-radius: 50px 0 0 50px;
+    outline: none;
+    font-size: 16px;
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+}
+
+#password:focus {
+    background: rgba(255, 255, 255, 1);
+    box-shadow: inset 0 2px 15px rgba(0, 0, 0, 0.2), 
+                0 0 0 2px rgba(255, 107, 136, 0.3);
+}
+
+/* Animated Password Characters */
+.password-char {
+    display: inline-block;
+    animation: charPop 0.3s ease;
+}
+
+@keyframes charPop {
+    0% { transform: scale(0); opacity: 0; }
+    80% { transform: scale(1.2); }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+/* Magic Button */
+.magic-button {
+    position: relative;
+    padding: 18px 30px;
+    background: linear-gradient(45deg, #ff6b88, #ff8e53);
+    color: white;
+    border: none;
+    border-radius: 0 50px 50px 0;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 16px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    z-index: 1;
+    box-shadow: 0 6px 20px rgba(255, 107, 136, 0.4);
+    transition: all 0.3s ease;
+}
+
+.magic-button span {
+    position: relative;
+    z-index: 2;
+}
+
+.magic-button .liquid {
+    position: absolute;
+    top: -60px;
+    left: 0;
+    width: 100%;
+    height: 200px;
+    background: linear-gradient(45deg, #ff4757, #ff6b88);
+    transition: all 0.5s ease;
+    z-index: 1;
+    clip-path: polygon(0 0, 100% 0, 100% 50%, 0 50%);
+}
+
+.magic-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(255, 107, 136, 0.6);
+}
+
+.magic-button:hover .liquid {
+    top: -120px;
+}
+
+.hint {
+    font-size: 0.9rem;
+    color: #888;
+    font-style: italic;
+    position: relative;
+    animation: fadeIn 1s 1s forwards;
+    opacity: 0;
+}
+
+.hint::after {
+    content: "";
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 30px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #ff6b88, transparent);
+}
+
+/* Shake Animation for Wrong Password */
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+    20%, 40%, 60%, 80% { transform: translateX(5px); }
+}
+
+.shake {
+    animation: shake 0.5s;
+}
+
+/* Celebration Animation */
+.celebrate .confetti {
+    opacity: 1;
+}
+
+.celebrate .balloon {
+    animation: float-away 2s forwards;
+}
+
+@keyframes float-away {
+    to { transform: translateY(-100vh); }
+}
